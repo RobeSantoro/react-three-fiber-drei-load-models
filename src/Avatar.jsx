@@ -1,28 +1,18 @@
-
-import {useLoader} from '@react-three/fiber'
-import {GLTFLoader} from 'three/examples/jsm/loaders/gltfloader'
-import {DRACOLoader} from 'three/examples/jsm/loaders/dracoloader'
+import {Clone, useGLTF} from "@react-three/drei"
 
 export default function Avatar() {
-    const animation = useLoader(
-        GLTFLoader,
-        './resources/animations/Animations.glb',
-        (loader) => {
-            const dracoLoader = new DRACOLoader()
-            dracoLoader.setDecoderPath('./decoder/')
-            loader.setDRACOLoader(dracoLoader)
-        }
-    )
 
+    const animation = useGLTF('./resources/animations/Animations.glb')
     console.log(animation);
 
-    const model = useLoader(
-        GLTFLoader,
-        './resources/models/AvatarRobe.005.glb'
-    )
+    const model = useGLTF('./resources/models/AvatarRobe.005.glb')
 
     return <>
-        <primitive object={model.scene} />
+        <primitive object={model.scene} position-x={-4} />
+        <Clone deep={true} object={model.scene} position-x={0} />
+        <Clone object={model.scene} position-x={4} />
     </>
 
 }
+
+useGLTF.preload('./resources/models/AvatarRobe.005.glb')

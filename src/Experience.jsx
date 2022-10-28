@@ -2,8 +2,9 @@ import './Experience.css'
 
 import {Html, MeshReflectorMaterial, OrbitControls} from '@react-three/drei'
 import {Perf} from 'r3f-perf'
-import Avatar from './Avatar'
 import {Suspense} from 'react'
+
+import Avatar from './Avatar'
 
 const Loading = <Html><div>LOADING...</div></Html>;
 
@@ -18,6 +19,7 @@ export default function Experience() {
         <directionalLight position={[1, 2, 3]} intensity={1.5} />
         <ambientLight intensity={0.5} />
 
+        {/* Floor */}
         <mesh position-y={0} scale={20} rotation={[-Math.PI * .5, 0, 0]}>
             <planeGeometry />
             {/* <meshBasicMaterial color={ 'white' } /> */}
@@ -30,6 +32,7 @@ export default function Experience() {
             />
         </mesh>
 
+        {/* Avatar */}
         <Suspense fallback={Loading}>
             <Avatar />
         </Suspense>
