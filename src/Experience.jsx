@@ -1,19 +1,19 @@
 import './Experience.css'
 
-import {MeshReflectorMaterial, OrbitControls} from '@react-three/drei'
+import {Html, MeshReflectorMaterial, OrbitControls} from '@react-three/drei'
 import {Perf} from 'r3f-perf'
-import {useLoader} from '@react-three/fiber'
-import {GLTFLoader} from 'three/examples/jsm/loaders/gltfloader'
+import Model from './Avatar'
+import {Suspense} from 'react'
+
+const Loading = <Html><div>LOADING...</div></Html>;
 
 export default function Experience() {
 
-    const model = useLoader(GLTFLoader, './resources/models/AvatarRobe.005.glb')
-    console.log(model)
     return <>
 
         <Perf position='top-left' scale={false} />
 
-        <OrbitControls dampingFactor={0.05} makeDefault target={[0,1,0]} />
+        <OrbitControls dampingFactor={0.05} makeDefault target={[0, 1, 0]} />
 
         <directionalLight position={[1, 2, 3]} intensity={1.5} />
         <ambientLight intensity={0.5} />
@@ -30,7 +30,8 @@ export default function Experience() {
             />
         </mesh>
 
-        <primitive object={model.scene} />
-
+        <Suspense fallback={Loading}>
+            <Model />
+        </Suspense>
     </>
 }
