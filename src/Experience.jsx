@@ -2,7 +2,7 @@ import './Experience.css'
 
 import {Html, MeshReflectorMaterial, OrbitControls} from '@react-three/drei'
 import {Perf} from 'r3f-perf'
-import Model from './Avatar'
+import Avatar from './Avatar'
 import {Suspense} from 'react'
 
 const Loading = <Html><div>LOADING...</div></Html>;
@@ -31,7 +31,7 @@ export default function Experience() {
         </mesh>
 
         <Suspense fallback={Loading}>
-            <Model />
+            <Avatar />
         </Suspense>
     </>
 }

@@ -3,7 +3,7 @@ import {useLoader} from '@react-three/fiber'
 import {GLTFLoader} from 'three/examples/jsm/loaders/gltfloader'
 import {DRACOLoader} from 'three/examples/jsm/loaders/dracoloader'
 
-export default function Model() {
+export default function Avatar() {
     const animation = useLoader(
         GLTFLoader,
         './resources/animations/Animations.glb',
